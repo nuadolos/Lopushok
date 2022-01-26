@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
-        Title="{Binding Content.Title}" Icon="/UI/SystemPicture/Лопушок.ico"
+        Title="{Binding Content.Title, ElementName=MainFrame}" Icon="/UI/SystemPicture/Лопушок.ico"
         Height="700" Width="1200" MinHeight="700" MinWidth="1200" WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource AdditionalBackground}">
         <Grid.RowDefinitions>

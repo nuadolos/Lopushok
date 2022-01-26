@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Lopushok.UI.Windows;
 
 namespace Lopushok.UI.Pages
 {
@@ -105,6 +106,11 @@ namespace Lopushok.UI.Pages
             SearchTBox.Text = null;
         }
 
+        private void TypesCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SortingProduct();
+        }
+
         private void SortCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SortingProduct();
@@ -122,11 +128,24 @@ namespace Lopushok.UI.Pages
 
         #endregion
 
-        #region
+        #region Отображение модального окна 
+
+        private void UpdateMinCostBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeMinCost changeMinCost = new ChangeMinCost();
+
+            if (changeMinCost.ShowDialog() == true)
+            {
+
+            }
+        }
 
         private void ViewProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (ViewProduct.SelectedItems.Count > 1)
+                UpdateMinCostBtn.Visibility = Visibility.Visible;
+            else
+                UpdateMinCostBtn.Visibility=Visibility.Hidden;
         }
 
         #endregion
@@ -135,12 +154,26 @@ namespace Lopushok.UI.Pages
 
         private void ViewProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            if (ViewProduct.SelectedItem is Product tempProd)
+                Transition.MainFrame.Navigate(new AddEditProduct(tempProd));
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            Transition.MainFrame.Navigate(new AddEditProduct(null));
+        }
 
+        #endregion
+
+        #region Обновление данных в ViewProduct после добавления или редактирования продукта
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Transition.Context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                SortingProduct();
+            }
         }
 
         #endregion

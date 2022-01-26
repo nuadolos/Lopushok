@@ -73,6 +73,21 @@ namespace Lopushok.Entities
                 return cost;
             }
         }
+        public bool Sales
+        {
+            get
+            {
+                var lastMonth  = DateTime.Now;
+
+                foreach (var item in ProductSale)
+                {
+                    if (item.SaleDate.AddMonths(1) > lastMonth)
+                        return true;
+                }
+
+                return false;
+            }
+        }
 
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

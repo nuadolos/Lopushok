@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Lopushok.UI.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1200"
-      Title="ProductView">
+      Title="Список продуктов" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -38,8 +38,8 @@
                       x:Name="DecreasingCheck" Checked="DecreasingCheck_Checked" Unchecked="DecreasingCheck_Unchecked"/>
             </WrapPanel>
 
-            <ComboBox DisplayMemberPath="Name" SelectedValuePath="Id" Grid.Column="2"
-                      x:Name="TypesCBox"/>
+            <ComboBox DisplayMemberPath="Title" SelectedValuePath="Id" Grid.Column="2"
+                      x:Name="TypesCBox" SelectionChanged="TypesCBox_SelectionChanged"/>
         </Grid>
 
         <ListView Grid.Row="1" SelectionChanged="ViewProduct_SelectionChanged" Margin="10"
@@ -58,7 +58,8 @@
                                                    Visibility="Collapsed" x:Name="ImagePath1"/>
                                         <TextBlock Text="{Binding Text, ElementName=ImagePath1, StringFormat=..{0}}"
                                                    Visibility="Collapsed" x:Name="ImagePath2"/>
-                                        <Border Style="{StaticResource BorderLopushok}">
+                                        <Border Style="{StaticResource BorderLopushok}"
+                                                x:Name="BorderImage">
                                             <Image Source="{Binding Text, ElementName=ImagePath2}"
                                                Height="150" Width="150" Stretch="Uniform" Margin="10"/>
                                         </Border>
@@ -95,9 +96,10 @@
                                 </Border>
 
                                 <ControlTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding ActiveProd}" Value="неактивен">
-                                        <Setter TargetName="BorderLV" Property="Background" Value="LightGray"></Setter>
-                                        <Setter TargetName="BorderLV" Property="Opacity" Value="0.8"></Setter>
+                                    <DataTrigger Binding="{Binding Sales}" Value="false">
+                                        <Setter TargetName="BorderLV" Property="BorderBrush" Value="#FFFF3E3E"></Setter>
+                                        <Setter TargetName="BorderLV" Property="BorderThickness" Value="4"/>
+                                        <Setter TargetName="BorderImage" Property="BorderBrush" Value="#FFFF3E3E"></Setter>
                                     </DataTrigger>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="BorderLV" Property="Background" Value="#FFFFA1B3"></Setter>
@@ -116,5 +118,8 @@
         <Button Grid.Row="2" HorizontalAlignment="Left"
                 Content="Добавить"
                 x:Name="AddBtn" Click="AddBtn_Click"/>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Visibility="Hidden"
+                Content="Изменить стоимость на ..."
+                x:Name="UpdateMinCostBtn" Click="UpdateMinCostBtn_Click"/>
     </Grid>
 </Page>
