@@ -146,7 +146,33 @@ namespace Lopushok.UI.Pages
 
         private void DeleteProdBtn_Click(object sender, RoutedEventArgs e)
         {
+            foreach (var item in Transition.Context.ProductSale.ToList())
+            {
+                if (item.ProductID == addProduct.ID)
+                {
+                    MessageBox.Show("У продукта существует информация о его продажах",
+                        "Удаление продукта", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
 
+            if (MessageBox.Show($"Вы хотите удалить продукт {addProduct.Title}?",
+                "Удаление продукта", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Transition.Context.Product.Remove(addProduct);
+                    Transition.Context.SaveChanges();
+                    MessageBox.Show("Продукт успешно удален",
+                        "Удаление продукта", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Transition.MainFrame.GoBack();
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show($"При удалении продукта возникла ошибка:\n{er.Message}",
+                        "Удаление продукта", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         #endregion

@@ -43,6 +43,7 @@
         </Grid>
 
         <ListView Grid.Row="1" SelectionChanged="ViewProduct_SelectionChanged" Margin="10"
+                  ScrollViewer.CanContentScroll="False"
                   Name="ViewProduct" MouseDoubleClick="ViewProduct_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

@@ -70,6 +70,9 @@
     <Compile Include="UI\Pages\ProductView.xaml.cs">
       <DependentUpon>ProductView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Windows\AddMaterial.xaml.cs">
+      <DependentUpon>AddMaterial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Windows\ChangeMinCost.xaml.cs">
       <DependentUpon>ChangeMinCost.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pages\ProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\AddMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
