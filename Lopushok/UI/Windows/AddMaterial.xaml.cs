@@ -21,8 +21,14 @@ namespace Lopushok.UI.Windows
     /// </summary>
     public partial class AddMaterial : Window
     {
+        #region Поля окна AddMaterial
+
         private ProductMaterial addMaterial;
         private int checkAddOrEdit;
+
+        #endregion
+
+        #region Коструктор окна AddMaterial
 
         public AddMaterial(ProductMaterial transferProdMat, int idProduct)
         {
@@ -42,6 +48,10 @@ namespace Lopushok.UI.Windows
 
             DataContext = addMaterial;
         }
+
+        #endregion
+
+        #region Сохранение данных, связанных с материалом продукта
 
         private void AddMaterialBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -81,9 +91,15 @@ namespace Lopushok.UI.Windows
             }
         }
 
+        #endregion
+
+        #region Закрытие окна без изменений данных
+
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        #endregion
     }
 }

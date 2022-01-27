@@ -23,19 +23,25 @@ namespace Lopushok.UI.Pages
     /// </summary>
     public partial class ProductView : Page
     {
+        #region Состояние страницы ProductView
+
+        Pagination pagination;
+
+        #endregion
+
         #region Коструктор страницы ProductView
 
         public ProductView()
         {
             InitializeComponent();
 
+            pagination = new Pagination(Transition.Context.Product.ToList().Count);
+
             var allTypes = Transition.Context.ProductType.ToList();
             allTypes.Insert(0, new ProductType { Title = "Все типы" });
             TypesCBox.ItemsSource = allTypes;
             TypesCBox.SelectedIndex = 0;
             SortCBox.SelectedIndex = 0;
-
-            ViewProduct.ItemsSource = Transition.Context.Product.ToList();
         }
 
         #endregion
@@ -85,14 +91,40 @@ namespace Lopushok.UI.Pages
                     }
             }
 
-            ViewProduct.ItemsSource = itemUpdate;
+            pagination.IsSorted(itemUpdate.Count);
+            pagination.Definition(FirstNumList, SecondNumList, ThirdNumList);
 
+            if (!pagination.HasPreviousPage && !pagination.HasNextPage)
+            {
+                BackList.Visibility = Visibility.Hidden;
+                ForwardList.Visibility = Visibility.Hidden;
+            }
+            else if (!pagination.HasPreviousPage)
+            {
+                BackList.Visibility = Visibility.Hidden;
+                ForwardList.Visibility = Visibility.Visible;
+            }
+            else if (!pagination.HasNextPage)
+            {
+                ForwardList.Visibility = Visibility.Hidden;
+                BackList.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BackList.Visibility = Visibility.Visible;
+                ForwardList.Visibility = Visibility.Visible;
+            }
+
+            ViewProduct.ItemsSource = pagination.LimitedList(itemUpdate);
         }
 
         private void SearchTBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (SearchTBox.Text != "Введите для поиска" && SearchTBox.Text != null)
+            {
                 SortingProduct();
+                pagination?.Zeroing();
+            }
         }
 
         private void SearchTBox_LostFocus(object sender, RoutedEventArgs e)
@@ -109,21 +141,25 @@ namespace Lopushok.UI.Pages
         private void TypesCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SortingProduct();
+            pagination?.Zeroing();
         }
 
         private void SortCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SortingProduct();
+            pagination?.Zeroing();
         }
 
         private void DecreasingCheck_Checked(object sender, RoutedEventArgs e)
         {
             SortingProduct();
+            pagination?.Zeroing();
         }
 
         private void DecreasingCheck_Unchecked(object sender, RoutedEventArgs e)
         {
             SortingProduct();
+            pagination?.Zeroing();
         }
 
         #endregion
@@ -145,7 +181,7 @@ namespace Lopushok.UI.Pages
             if (ViewProduct.SelectedItems.Count > 1)
                 UpdateMinCostBtn.Visibility = Visibility.Visible;
             else
-                UpdateMinCostBtn.Visibility=Visibility.Hidden;
+                UpdateMinCostBtn.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -174,6 +210,43 @@ namespace Lopushok.UI.Pages
                 Transition.Context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 SortingProduct();
             }
+        }
+
+        #endregion
+
+        #region Пагинация
+
+        private void BackList_Click(object sender, RoutedEventArgs e)
+        {
+            pagination.GoBack();
+            SortingProduct();
+        }
+
+        private void ForwardList_Click(object sender, RoutedEventArgs e)
+        {
+            pagination.GoForward();
+            SortingProduct();
+        }
+
+        private void FirstNumList_Click(object sender, RoutedEventArgs e)
+        {
+            pagination.NumPage = int.Parse((sender as Button).Content.ToString()) - 1;
+            pagination.GetIndex();
+            SortingProduct();
+        }
+
+        private void SecondNumList_Click(object sender, RoutedEventArgs e)
+        {
+            pagination.NumPage = int.Parse((sender as Button).Content.ToString()) - 1;
+            pagination.GetIndex();
+            SortingProduct();
+        }
+
+        private void ThirdNumList_Click(object sender, RoutedEventArgs e)
+        {
+            pagination.NumPage = int.Parse((sender as Button).Content.ToString()) - 1;
+            pagination.GetIndex();
+            SortingProduct();
         }
 
         #endregion

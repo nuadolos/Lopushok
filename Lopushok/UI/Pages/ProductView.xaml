@@ -119,8 +119,21 @@
         <Button Grid.Row="2" HorizontalAlignment="Left"
                 Content="Добавить"
                 x:Name="AddBtn" Click="AddBtn_Click"/>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Visibility="Hidden"
+        <Button Grid.Row="2" HorizontalAlignment="Center" Visibility="Hidden"
                 Content="Изменить стоимость на ..."
                 x:Name="UpdateMinCostBtn" Click="UpdateMinCostBtn_Click"/>
+        <WrapPanel Grid.Row="2" Margin="10"
+                   HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Width="30" Content="&lt;" Visibility="Hidden" Margin="0"
+                    x:Name="BackList" Click="BackList_Click"/>
+            <Button Width="30" Content="1" Margin="0"
+                    x:Name="FirstNumList" Click="FirstNumList_Click"/>
+            <Button Width="30" Content="2" Margin="0"
+                    x:Name="SecondNumList" Click="SecondNumList_Click"/>
+            <Button Width="30" Content="3" Margin="0"
+                    x:Name="ThirdNumList" Click="ThirdNumList_Click"/>
+            <Button Width="30" Content=">" Margin="0"
+                    x:Name="ForwardList" Click="ForwardList_Click"/>
+        </WrapPanel>
     </Grid>
 </Page>

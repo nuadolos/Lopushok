@@ -76,6 +76,7 @@
     <Compile Include="UI\Windows\ChangeMinCost.xaml.cs">
       <DependentUpon>ChangeMinCost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Pagination.cs" />
     <Compile Include="Utilities\Transition.cs" />
     <Page Include="UI\Pages\AddEditProduct.xaml">
       <SubType>Designer</SubType>
