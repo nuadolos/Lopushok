@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok.UI.Windows"
         mc:Ignorable="d"
-        Title="AddMaterial" Height="450" Width="800">
+        Title="AddMaterial" Icon="/UI/SystemPicture/Лопушок.ico"
+        Height="300" Width="410" MinHeight="300" MinWidth="410">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" FontSize="24"
+                   Style="{StaticResource TBlockInLV}"
+                   x:Name="HeaderBlock">
+        </TextBlock>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel>
+                <TextBlock Text="Материалы:" FontSize="20"
+                           Width="120" TextAlignment="Right"/>
+                <ComboBox SelectedItem="{Binding Material}"
+                    DisplayMemberPath="Title" SelectedValuePath="ID"
+                    x:Name="MaterialCmb"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Количество:" FontSize="20"
+                           Width="120" TextAlignment="Right"/>
+                <TextBox Text="{Binding Count}"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Сохранить"
+                    x:Name="AddMaterialBtn" Click="AddMaterialBtn_Click"/>
+            <Button Content="Отмена"
+                    x:Name="CancelBtn" Click="CancelBtn_Click"/>
+        </WrapPanel>
     </Grid>
 </Window>

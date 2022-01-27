@@ -241,6 +241,9 @@
       <DependentUpon>LopushokModel.edmx</DependentUpon>
       <LastGenOutput>LopushokModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="UI\SystemPicture\AddIcon.png" />
+    <Resource Include="UI\SystemPicture\DeleteIcon.png" />
+    <Resource Include="UI\SystemPicture\EditIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok.UI.Windows"
         mc:Ignorable="d"
-        Title="Изменение стоимости" 
-        Height="300" Width="400" MinHeight="300" MinWidth="400">
+        Title="Изменение стоимости" Icon="/UI/SystemPicture/Лопушок.ico"
+        Height="200" Width="410" MinHeight="200" MinWidth="410">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -14,6 +14,17 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="1"/>
+        <TextBlock FontSize="24" Text="Изменение мин. стоимости"/>
+
+        <TextBox Grid.Row="1" TextAlignment="Right"
+                 Width="300" FontSize="16"
+                 x:Name="EditMinCost"/>
+
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Изменить"
+                x:Name="SaveBtn" Click="SaveBtn_Click"/>
+            <Button Content="Отмена"
+                x:Name="CancelBtn" Click="CancelBtn_Click"/>
+        </WrapPanel>
     </Grid>
 </Window>

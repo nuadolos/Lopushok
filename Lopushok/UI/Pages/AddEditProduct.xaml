@@ -55,7 +55,7 @@
                     <TextBox Text="{Binding MinCostForAgent, StringFormat={}{0:0.00}}"/>
                 </WrapPanel>
             </StackPanel>
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" Margin="10">
                 <Border Style="{StaticResource BorderLopushok}" Background="White">
                     <Image Source="/UI/SystemPicture/Лопушок.png"
                        Width="175" Height="175" Stretch="Fill"
@@ -66,6 +66,74 @@
                                VerticalAlignment="Top" TextAlignment="Right"/>
                     <TextBox Text="{Binding Description}" Height="80"
                              TextWrapping="Wrap"/>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Visibility="Collapsed"
+                        x:Name="OperationsProdMat">
+                <ListView Margin="50, 10, 10, 0" Width="400" Height="300"
+                          ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          BorderBrush="{StaticResource AdditionalBackground}"
+                          BorderThickness="3"
+                          Name="ViewProdMat">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Style="{StaticResource BorderLopushok}" Margin="10" 
+                                        x:Name="BorderLV">
+                                            <StackPanel Width="160">
+                                                <TextBlock Text="{Binding Material.CheckImage, TargetNullValue=/SystemPicture/picture.png}"
+                                                   Visibility="Collapsed" x:Name="ImagePath1"/>
+                                                <TextBlock Text="{Binding Text, ElementName=ImagePath1, StringFormat=..{0}}"
+                                                   Visibility="Collapsed" x:Name="ImagePath2"/>
+                                                <Border Style="{StaticResource BorderLopushok}"
+                                                x:Name="BorderImage">
+                                                    <Image Source="{Binding Text, ElementName=ImagePath2}"
+                                                    Height="100" Width="100" Stretch="Uniform" Margin="10"/>
+                                                </Border>
+
+                                                <TextBlock Text="{Binding Material.Title}" Style="{StaticResource TBlockInLV}"
+                                                           TextAlignment="Center" HorizontalAlignment="Center" Height="60"/>
+                                                <TextBlock Text="{Binding Count, StringFormat=Количество: {0}}" Style="{StaticResource TBlockInLV}"
+                                                           HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="BorderLV" Property="Background" Value="{StaticResource ResourceKey=AdditionalBackground}"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BorderLV" Property="Background" Value="#FFE3FFFC"></Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <WrapPanel Margin="50, 10, 10, 10"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Width="30"
+                            x:Name="AddProdMat" Click="AddProdMat_Click">
+                        <Image Source="/UI/SystemPicture/AddIcon.png"/>
+                    </Button>
+                    <Button Width="30"
+                            x:Name="EditProdMat" Click="EditProdMat_Click">
+                        <Image Source="/UI/SystemPicture/EditIcon.png"/>
+                    </Button>
+                    <Button Width="30"
+                            x:Name="DeleteProdMat" Click="DeleteProdMat_Click">
+                        <Image Source="/UI/SystemPicture/DeleteIcon.png"/>
+                    </Button>
                 </WrapPanel>
             </StackPanel>
         </WrapPanel>

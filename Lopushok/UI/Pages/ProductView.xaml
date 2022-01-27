@@ -103,10 +103,10 @@
                                         <Setter TargetName="BorderImage" Property="BorderBrush" Value="#FFFF3E3E"></Setter>
                                     </DataTrigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="BorderLV" Property="Background" Value="#FFFFA1B3"></Setter>
+                                        <Setter TargetName="BorderLV" Property="Background" Value="{StaticResource ResourceKey=AdditionalBackground}"></Setter>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="BorderLV" Property="Background" Value="#FFFFBECB"></Setter>
+                                        <Setter TargetName="BorderLV" Property="Background" Value="#FFE3FFFC"></Setter>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

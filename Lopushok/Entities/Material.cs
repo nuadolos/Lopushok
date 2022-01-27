@@ -32,6 +32,13 @@ namespace Lopushok.Entities
         public decimal Cost { get; set; }
         public string Image { get; set; }
         public int MaterialTypeID { get; set; }
+        public string CheckImage
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Image) ? null : Image;
+            }
+        }
     
         public virtual MaterialType MaterialType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

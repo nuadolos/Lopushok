@@ -132,11 +132,11 @@ namespace Lopushok.UI.Pages
 
         private void UpdateMinCostBtn_Click(object sender, RoutedEventArgs e)
         {
-            ChangeMinCost changeMinCost = new ChangeMinCost();
+            ChangeMinCost changeMinCost = new ChangeMinCost(ViewProduct.SelectedItems.Cast<Product>().ToList());
 
             if (changeMinCost.ShowDialog() == true)
             {
-
+                SortingProduct();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Lopushok.Entities;
+using Lopushok.UI.Windows;
 using Lopushok.Utilities;
 using Microsoft.Win32;
 using System;
@@ -29,6 +30,8 @@ namespace Lopushok.UI.Pages
         private Product addProduct;
         private string articleProd;
 
+        private List<ProductMaterial> lProdMaterial { get => Transition.Context.ProductMaterial.Where(p => p.ProductID == addProduct.ID).ToList(); }
+
         public string Path { get { return System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "../../UI")); } }
 
         #endregion
@@ -47,6 +50,9 @@ namespace Lopushok.UI.Pages
             {
                 DeleteProdBtn.Visibility = Visibility.Visible;
                 articleProd = transferProd.ArticleNumber;
+
+                OperationsProdMat.Visibility = Visibility.Visible;
+                ViewProdMat.ItemsSource = lProdMaterial;
             }
 
             if (!string.IsNullOrWhiteSpace(transferProd?.Image))
@@ -173,6 +179,52 @@ namespace Lopushok.UI.Pages
                         "Удаление продукта", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        #endregion
+
+        #region Добавление, редактирование и удаление материалов, прикрепленных к продукту
+
+        private void OpenAddMaterial(ProductMaterial tempPrMat = null, int id = 0)
+        {
+            AddMaterial material = new AddMaterial(tempPrMat, id);
+
+            if (material.ShowDialog() == true)
+            {
+                ViewProdMat.ItemsSource = lProdMaterial;
+            }
+        }
+
+        private void AddProdMat_Click(object sender, RoutedEventArgs e)
+        {
+            OpenAddMaterial(id: addProduct.ID);
+        }
+
+        private void EditProdMat_Click(object sender, RoutedEventArgs e)
+        {
+            OpenAddMaterial(ViewProdMat.SelectedItem as ProductMaterial);
+        }
+
+        private void DeleteProdMat_Click(object sender, RoutedEventArgs e)
+        {
+            var deleteProdMat = ViewProdMat.SelectedItems.Cast<ProductMaterial>().ToList();
+
+            if (deleteProdMat.Count > 0)
+            {
+                if (MessageBox.Show($"Вы хотите удалить {deleteProdMat.Count} элементов?", "Удаление материала", 
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    Transition.Context.ProductMaterial.RemoveRange(deleteProdMat);
+                    Transition.Context.SaveChanges();
+                    Transition.Context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                    ViewProdMat.ItemsSource = lProdMaterial;
+                    MessageBox.Show("Данные успешно удалены",
+                        "Удаление материала", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+                MessageBox.Show("Необходимо выбрать хотя бы один элемент",
+                        "Удаление материала", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         #endregion
