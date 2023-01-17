@@ -1,0 +1,89 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="UI\Pictures\lopushok.ico" />
+    <None Remove="UI\Pictures\lopushok.png" />
+    <None Remove="UI\Pictures\picture.png" />
+    <None Remove="UI\Pictures\products\paper_0.jpeg" />
+    <None Remove="UI\Pictures\products\paper_1.jpeg" />
+    <None Remove="UI\Pictures\products\paper_10.jpeg" />
+    <None Remove="UI\Pictures\products\paper_11.jpeg" />
+    <None Remove="UI\Pictures\products\paper_12.jpeg" />
+    <None Remove="UI\Pictures\products\paper_13.jpeg" />
+    <None Remove="UI\Pictures\products\paper_14.jpeg" />
+    <None Remove="UI\Pictures\products\paper_15.jpeg" />
+    <None Remove="UI\Pictures\products\paper_16.jpeg" />
+    <None Remove="UI\Pictures\products\paper_17.jpeg" />
+    <None Remove="UI\Pictures\products\paper_18.jpeg" />
+    <None Remove="UI\Pictures\products\paper_19.jpeg" />
+    <None Remove="UI\Pictures\products\paper_2.jpeg" />
+    <None Remove="UI\Pictures\products\paper_20.jpeg" />
+    <None Remove="UI\Pictures\products\paper_21.jpeg" />
+    <None Remove="UI\Pictures\products\paper_22.jpeg" />
+    <None Remove="UI\Pictures\products\paper_23.jpeg" />
+    <None Remove="UI\Pictures\products\paper_24.jpeg" />
+    <None Remove="UI\Pictures\products\paper_25.jpeg" />
+    <None Remove="UI\Pictures\products\paper_3.jpeg" />
+    <None Remove="UI\Pictures\products\paper_4.jpeg" />
+    <None Remove="UI\Pictures\products\paper_5.jpeg" />
+    <None Remove="UI\Pictures\products\paper_6.jpeg" />
+    <None Remove="UI\Pictures\products\paper_7.jpeg" />
+    <None Remove="UI\Pictures\products\paper_8.jpeg" />
+    <None Remove="UI\Pictures\products\paper_9.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI\Pictures\lopushok.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Pictures\lopushok.png" />
+    <Resource Include="UI\Pictures\picture.png" />
+    <Resource Include="UI\Pictures\products\paper_0.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_1.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_10.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_11.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_12.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_13.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_14.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_15.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_16.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_17.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_18.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_19.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_2.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_20.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_21.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_22.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_23.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_24.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_25.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_3.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_4.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_5.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_6.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_7.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_8.jpeg" />
+    <Resource Include="UI\Pictures\products\paper_9.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LopushokDataBase\" />
+  </ItemGroup>
+
+</Project>
