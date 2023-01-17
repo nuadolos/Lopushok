@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="Lopushok.UI.Windows.UpdateMinCostForAgentWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Lopushok.UI.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Изменение стоимости продукта для агента"
+    Width="500"
+    Height="200"
+    MinWidth="500"
+    MinHeight="200"
+    Icon="../Pictures/lopushok.ico"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="20" Text="Изменение мин. стоимости продукции для агента" />
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Text="Мин. стоимость для агента" />
+                <TextBox x:Name="textBoxMinCostForAgent" />
+            </WrapPanel>
+            <WrapPanel>
+                <Button
+                    x:Name="btnSaveChanges"
+                    Click="btnSaveChanges_Click"
+                    Content="Сохранить изменения" />
+                <Button
+                    x:Name="btnCancel"
+                    Click="btnCancel_Click"
+                    Content="Отмена" />
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>
